@@ -27,6 +27,46 @@ function addProjectDetails(e) {
 	var idNumber = projectID.substr('project'.length);
 
 	console.log("User clicked on project " + idNumber);
+	/*newly added for lab*/
+	$("#testjs").click(function(e) {
+	$.get("/project/random", addProject;)
+})
+}
+
+function addProject(result) {
+	console.log("User clicked on project" +idNumber);
+}
+
+/*newly added: callback using JSON result*/
+function addProject(result) {
+	console.log(result);
+	var projectHTML ='<a href="#"" class="thumbnail">' 
+		+'<img src="'+result['image'] +'"class="img">' + 
+		'<p>' +result['title'] + '</p>' + '<p><small>' + 
+		result['date'] + '</small></p></a>';
+	$("#project-container").html(projectHTML);
+	$("#project-description").html(result['summary']);
+}
+/*
+function addProject(result) {
+  var projectHTML = '<a href="#" class="thumbnail">' +
+    '<img src="' + result['image'] + '" class="img">' +
+    '<p>' + result['title'] + '</p>' +
+    '<p><small>' + result['date'] +
+    '</small></p></a>'; 
+} */
+/*new as well*/
+var projects =require('../projects.json');
+
+exports.projectInfo = function(req, res) {
+	var projectID = req.params.id;
+	if (projectID == "random") {
+		project ID = Math.floor(Math.random() *...);
+	} else {
+		projectID =parseInt(id);
+	}
+	var project =projects[projectID-1];
+	res.json(project);//instead of res.render()
 }
 
 /*
@@ -35,4 +75,14 @@ function addProjectDetails(e) {
  */
 function randomizeColors(e) {
 	console.log("User clicked on color button");
+	$('body').css('background-color', colors[0]);
+	$('.thumbnail').css('background-color', colors[1]);
+	$('h1, h2, h3, h4, h5, h5').css('color', colors[2]);
+	$('p').css('color', colors[3]);
+	$('.project img').css('opacity', .75);
 }
+
+
+
+
+
